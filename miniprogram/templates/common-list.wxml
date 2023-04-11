@@ -1,0 +1,22 @@
+<template name="tempCommonList">
+
+  <view class="post-list">
+    <block wx:for="{{postsList}}" wx:key="index">
+      <view class="post-item ui-BG ui-BG-card" index="{{index}}" id="{{item.id}}" bindtap="redictDetail">
+        <view class="post-desc">
+          <view class="post-title text-lg ui-TC">
+             <text  >{{item.title.rendered}}</text>    
+          </view>
+          <view class="post-data ui-TC-3 text-xs">
+
+            <text  >{{item.date}}</text>
+            <text class="cicon-popover-o  "> {{item.total_comments}}</text>
+            <text class="cicon-favorite-o "> {{item.like_count}}</text>
+            <text class="cicon-eye-o "> {{item.pageviews}}</text>
+          </view>
+        </view>
+        <image src="{{item.post_medium_image}}" mode="aspectFill" class="post-img"></image>
+      </view>
+    </block>
+  </view>
+</template>

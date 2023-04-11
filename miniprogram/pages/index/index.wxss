@@ -1,0 +1,142 @@
+/**index.wxss**/
+
+.index-top {
+  position: relative;
+}
+.indexbg {
+  position: absolute;
+  top: -30rpx;
+  width: 750rpx;
+  height: 500rpx;
+  z-index: -1;
+ 
+}
+/* 搜索 */
+.ui-search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  margin-bottom: 15rpx;
+}
+.ui-search-bar .ui-search-action+.ui-search-form {
+  margin-left: 20rpx;
+}
+
+.ui-search-bar .ui-search-form {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  color: #333;
+  height: 68rpx;
+  font-size: 24rpx;
+
+
+}
+.ui-search-icon,
+.ui-search-close {
+  height: 68rpx;
+  line-height: 68rpx;
+}
+
+.ui-search-icon {
+  margin-left: 25rpx;
+  margin-right: 20rpx;
+}
+
+.ui-search-input {
+  position: relative;
+  flex: 1;
+  height: 68rpx;
+
+
+}
+.ui-search-text-left {
+  text-align: left;
+}
+
+.ui-search-text-center {
+  text-align: center;
+}
+
+.ui-search-text-right {
+  text-align: right;
+}
+
+.ui-search-close {
+  margin-left: 20rpx;
+  margin-right: 25rpx;
+}
+
+.ui-search-bar .ui-search-form+.ui-search-action {
+  margin-left: 20rpx;
+}
+
+/* 引导添加到我的小程序 */
+.addMyMiniapp {
+  color: #333;
+  line-height: 1.2;
+  background: #fff;
+  padding: 24rpx 24rpx;
+  position: fixed;
+  top:20rpx;
+  right: 24rpx;
+  z-index: 999;
+  box-shadow: 0 16rpx 30rpx -12rpx rgba(88, 88, 88, 0.2);
+}
+.addMyMiniapp>view {
+  font-size: 24rpx;
+  font-weight: 500;
+}
+.addMyMiniapp>text {
+  font-size: 20rpx;
+  font-weight: 200;
+}
+.addMyMiniapp::before {
+  content: '';
+  width: 20rpx;
+  height: 20rpx;
+  background: rgb(255, 255, 255);
+  transform: rotate(45deg);
+  position: absolute;
+  right: 118rpx;
+  top: -10rpx;
+}
+
+.ui-item {
+  display: block;
+  padding: 24rpx 0 20rpx;
+  text-align: center;
+}
+
+.ui-item image {
+  width: 80rpx;
+  height: 80rpx;
+  margin: auto;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.ui-item text {
+
+  color: #333;
+  font-weight: 300;
+}
+.sticky-list {
+  height: 130rpx;
+  overflow: hidden;
+}
+
+.sticky-list-item-title {
+  display: block;
+  overflow: hidden;
+}
+
+.list-item-ad {
+  margin: 24rpx; 
+ 
+  overflow: hidden;
+  border-radius: var(--radius);
+}
