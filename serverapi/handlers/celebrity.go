@@ -1,16 +1,17 @@
 package handlers
 
 import (
-	"zongheng/logic"
+	"culture/logic"
 )
+
+var _l logic.Celebrity
 
 type Celebrity struct {
 	Base
 }
 
-func (celebrity Celebrity) GetAll() ApiResponse {
+func (celebrity Celebrity) GetEvent() ApiResponse {
 	celebrity.Auth()
-	_l := logic.Celebrity{}
-	data := _l.GetAll()
+	data := _l.GetEvent()
 	return Success(data)
 }

@@ -1,8 +1,8 @@
 package routes
 
 import (
+	"culture/handlers"
 	"net/http"
-	"zongheng/handlers"
 
 	"github.com/gin-gonic/gin"
 )
@@ -23,14 +23,14 @@ var webRoutes = WebRoutes{
 	WebRoute{
 		"Home",
 		"GET",
-		"/celebrities/getall",
+		"/celebrities/getEvent",
 		func(ctx *gin.Context) {
-			defer func() {
-				if err := recover(); err != nil {
-					ctx.JSON(http.StatusOK, "Error")
-				}
-			}()
-			ctx.JSON(http.StatusOK, handlers.Celebrity{}.GetAll())
+			// defer func() {
+			// 	if err := recover(); err != nil {
+			// 		ctx.JSON(http.StatusOK, "Error")
+			// 	}
+			// }()
+			ctx.JSON(http.StatusOK, handlers.Celebrity{}.GetEvent())
 		},
 	},
 }

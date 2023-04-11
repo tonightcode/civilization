@@ -1,38 +1,42 @@
 package model
 
 import (
-	"time"
+	"fmt"
+	"log"
+
+	"github.com/spf13/viper"
 
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
+
+	"culture/entity"
 )
-
-type event struct {
-	Id        int
-	Title     string
-	Content   string
-	CreatedAt time.Time
-	UpdateAt  time.Time
-	peoples   []people
-}
-
-type people struct {
-	Id        int
-	Name      int
-	Desc      string
-	start     time.Time
-	end       time.Time
-	CreatedAt time.Time
-	UpdateAt  time.Time
-}
 
 var DbConn *gorm.DB
 
-func init() {
-	var err error
-	DbConn, err = gorm.Open("mysql", "root:root@/test_db?charset=utf8mb4&parseTime=true")
+type Celebrity struct {
+}
+
+func (celebrity Celebrity) Init() *gorm.DB {
+	viper.SetConfigFile("config/db.yml")
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Panic(err)
+	}
+	viper.WatchConfig()
+	fmt.Println(viper.GetString("mysql.local"))
+	DbConn, err = gorm.Open("mysql", viper.GetString("mysql.local"))
 	if err != nil {
 		panic(err)
 	}
-	DbConn.AutoMigrate()
+	DbConn.AutoMigrate(&entity.Event{}, &entity.Person{})
+	return DbConn
+}
 
+func (celebrity Celebrity) GetEvent() (event entity.Event, err error) {
+	DbConn := celebrity.Init()
+	if err = DbConn.Find(event).Error; err != nil {
+		return event, err
+	}
+	return
 }

@@ -1,9 +1,16 @@
 package logic
 
+import (
+	"culture/entity"
+	"culture/model"
+)
+
 type Celebrity struct {
 }
 
-func (celebrity Celebrity) GetAll() map[string]string {
+var _m model.Celebrity
 
-	return map[string]string{"total": "3", "list": ""}
+func (celebrity Celebrity) GetEvent() entity.Event {
+	event, _ := _m.GetEvent()
+	return event
 }

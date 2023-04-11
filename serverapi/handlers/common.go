@@ -13,11 +13,9 @@ type ApiResponse struct {
 	} `json:"data"`
 }
 
-func Success(data map[string]string) ApiResponse {
+func Success(data interface{}) ApiResponse {
 	apiResponse := ApiResponse{}
 	apiResponse.Code = 0
 	apiResponse.Msg = "Success"
-	apiResponse.Data.Total = data["total"]
-	apiResponse.Data.List = data["list"]
 	return apiResponse
 }
