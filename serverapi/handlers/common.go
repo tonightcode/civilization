@@ -1,5 +1,11 @@
 package handlers
 
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 type Response struct {
 	Code int    `json:"code"`
 	Msg  string `json:"msg"`
@@ -7,15 +13,27 @@ type Response struct {
 
 type ApiResponse struct {
 	Response
-	Data struct {
-		Total string `json:"total"`
-		List  string `json:"list"`
-	} `json:"data"`
+	Data interface{}
 }
 
 func Success(data interface{}) ApiResponse {
-	apiResponse := ApiResponse{}
-	apiResponse.Code = 0
-	apiResponse.Msg = "Success"
+	apiResponse := ApiResponse{
+		Response{
+			Code: 1,
+			Msg:  "Success",
+		},
+		data,
+	}
 	return apiResponse
+}
+
+func Fail() {
+	response := Response{
+		Code: 0,
+		Msg:  "Error",
+	}
+
+	var ctx gin.Context
+
+	ctx.JSON(http.StatusOK, response)
 }

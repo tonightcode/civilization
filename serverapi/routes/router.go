@@ -15,7 +15,14 @@ func NewRouter() *gin.Engine {
 	for _, route := range webRoutes {
 		switch route.Method {
 		case "GET":
-			router.GET(route.Pattern, route.HandleFunc)
+			router.GET(route.Pattern, func(ctx *gin.Context) {
+				defer func() {
+					if err := recover(); err != nil {
+						ctx.JSON(http.StatusOK, err)
+					}
+				}()
+				ctx.JSON(http.StatusOK, route.Fn)
+			})
 		}
 	}
 	return router

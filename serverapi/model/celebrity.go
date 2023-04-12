@@ -1,7 +1,6 @@
 package model
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/spf13/viper"
@@ -24,7 +23,6 @@ func (celebrity Celebrity) Init() *gorm.DB {
 		log.Panic(err)
 	}
 	viper.WatchConfig()
-	fmt.Println(viper.GetString("mysql.local"))
 	DbConn, err = gorm.Open("mysql", viper.GetString("mysql.local"))
 	if err != nil {
 		panic(err)
@@ -35,8 +33,8 @@ func (celebrity Celebrity) Init() *gorm.DB {
 
 func (celebrity Celebrity) GetEvent() (event entity.Event, err error) {
 	DbConn := celebrity.Init()
-	if err = DbConn.Find(event).Error; err != nil {
-		return event, err
+	if err = DbConn.Find(&event).Error; err != nil {
+		return
 	}
 	return
 }

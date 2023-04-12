@@ -2,11 +2,9 @@ package handlers
 
 import (
 	"culture/logic"
-	"culture/model"
 )
 
 var _l logic.Celebrity
-var _m model.Celebrity
 
 type Celebrity struct {
 	Base
