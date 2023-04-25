@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// go run github.com/cosmtrek/air
+// 热重载 go run github.com/cosmtrek/air
 func main() {
 	startWebServer(":8080")
 }

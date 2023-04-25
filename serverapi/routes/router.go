@@ -1,8 +1,10 @@
 package routes
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
+	"reflect"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,17 +17,29 @@ func NewRouter() *gin.Engine {
 	for _, route := range webRoutes {
 		switch route.Method {
 		case "GET":
-			router.GET(route.Pattern, func(ctx *gin.Context) {
-				defer func() {
-					if err := recover(); err != nil {
-						ctx.JSON(http.StatusOK, err)
-					}
-				}()
-				ctx.JSON(http.StatusOK, route.Fn)
-			})
+			router.GET(route.Pattern, route.Fn)
+		case "POST":
+			router.POST(route.Pattern, route.Fn)
+		case "PUT":
+			router.PUT(route.Pattern, route.Fn)
 		}
 	}
 	return router
+}
+
+// 反射调用
+func Call(m map[string]interface{}, name string, params ...interface{}) (result []reflect.Value, err error) {
+	f := reflect.ValueOf(m[name])
+	if len(params) != f.Type().NumIn() {
+		err = errors.New("The number of params is not adapted.")
+		return
+	}
+	in := make([]reflect.Value, len(params))
+	for k, param := range params {
+		in[k] = reflect.ValueOf(param)
+	}
+	result = f.Call(in)
+	return
 }
 
 // 记录请求日志信息中间件

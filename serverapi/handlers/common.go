@@ -1,11 +1,5 @@
 package handlers
 
-import (
-	"net/http"
-
-	"github.com/gin-gonic/gin"
-)
-
 type Response struct {
 	Code int    `json:"code"`
 	Msg  string `json:"msg"`
@@ -27,13 +21,14 @@ func Success(data interface{}) ApiResponse {
 	return apiResponse
 }
 
-func Fail() {
-	response := Response{
-		Code: 0,
-		Msg:  "Error",
+func Fail(msg string) ApiResponse {
+	apiResponse := ApiResponse{
+		Response{
+			Code: 1,
+			Msg:  "Success",
+		},
+		make([]interface{}, 0),
 	}
 
-	var ctx gin.Context
-
-	ctx.JSON(http.StatusOK, response)
+	return apiResponse
 }

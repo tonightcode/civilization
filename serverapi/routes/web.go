@@ -11,7 +11,7 @@ type WebRoute struct {
 	Name    string
 	Method  string
 	Pattern string
-	Fn      handlers.ApiResponse
+	Fn      gin.HandlerFunc
 }
 
 var c gin.Context
@@ -22,9 +22,21 @@ type WebRoutes []WebRoute
 // 定义所有 Web 路由
 var webRoutes = WebRoutes{
 	WebRoute{
-		"Home",
+		"getEvent",
 		"GET",
 		"/celebrities/getEvent",
-		handlers.Celebrity{}.GetEvent(),
+		handlers.Event{}.GetEvent,
+	},
+	WebRoute{
+		"getEvents",
+		"GET",
+		"/celebrities/getEvents",
+		handlers.Event{}.GetEvents,
+	},
+	WebRoute{
+		"editEvent",
+		"GET",
+		"/celebrities/editEvent",
+		handlers.Event{}.EditEvent,
 	},
 }

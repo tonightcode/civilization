@@ -1,12 +1,16 @@
 package entity
 
-import "time"
-
 type Event struct {
-	Id        int
-	Title     string
-	Content   string
-	CreatedAt time.Time
-	UpdateAt  time.Time
-	Persons   []Person
+	ID         uint `gorm:"primary_key"`
+	Title      string
+	Content    string
+	HappenedAt LocalTime
+	CreatedAt  LocalTime
+	UpdatedAt  LocalTime
+	DeletedAt  *LocalTime `sql:"index"`
+	Persons    []Person   `gorm:"many2many:event_persons"`
+}
+
+func (event Event) TableName() string {
+	return "event"
 }

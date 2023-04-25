@@ -1,13 +1,16 @@
 package entity
 
-import "time"
-
 type Person struct {
-	Id         int
-	Name       int
+	ID         uint `gorm:"primary_key"`
+	CreatedAt  LocalTime
+	UpdatedAt  LocalTime
+	DeletedAt  *LocalTime `sql:"index"`
+	Name       string
 	Desc       string
-	live_start time.Time
-	live_end   time.Time
-	CreatedAt  time.Time
-	UpdateAt   time.Time
+	Live_start LocalTime
+	Live_end   LocalTime
+}
+
+func (person Person) TableName() string {
+	return "person"
 }
