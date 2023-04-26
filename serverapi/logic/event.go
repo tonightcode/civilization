@@ -3,7 +3,6 @@ package logic
 import (
 	"culture/entity"
 	"culture/model"
-	"fmt"
 	"time"
 )
 
@@ -31,8 +30,6 @@ func (event Event) EditEvent(id int, param map[string]string) int {
 	eventEntity.Content = param["content"]
 
 	happenedAt, _ := time.Parse("2006-01-02 15:04:05", param["happened_at"])
-	fmt.Println(param["happened_at"], happenedAt)
-	fmt.Println(entity.LocalTime(happenedAt))
 	eventEntity.HappenedAt = entity.LocalTime(happenedAt)
 	res := _m.EditEvent(eventEntity)
 	return res

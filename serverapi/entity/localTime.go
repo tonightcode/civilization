@@ -1,10 +1,10 @@
 package entity
 
 import (
-	"fmt"
-	"time"
 	"database/sql/driver"
+	"fmt"
 	"strings"
+	"time"
 )
 
 type LocalTime time.Time
@@ -32,4 +32,16 @@ func (t *LocalTime) UnmarshalJSON(data []byte) error {
 	t1, err := time.Parse("2006-01-02 15:04:05", timeStr)
 	*t = LocalTime(t1)
 	return err
+}
+
+func (t *LocalTime) Scan(value interface{}) error {
+	switch v := value.(type) {
+	case time.Time:
+		*t = LocalTime(v)
+	case nil:
+		*t = LocalTime(time.Time{})
+	default:
+		return fmt.Errorf("Failed to scan LocalTime: %v", value)
+	}
+	return nil
 }
