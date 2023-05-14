@@ -11,8 +11,6 @@ import (
 	"culture/entity"
 )
 
-var db *gorm.DB
-
 type Event struct {
 }
 
@@ -23,7 +21,7 @@ func (event Event) Init() *gorm.DB {
 		log.Panic(err)
 	}
 	viper.WatchConfig()
-	db, err = gorm.Open("mysql", viper.GetString("mysql.local"))
+	db, err := gorm.Open("mysql", viper.GetString("mysql.local"))
 	if err != nil {
 		panic(err)
 	}

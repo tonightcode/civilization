@@ -103,7 +103,7 @@ Page({
 
                   var strdate = item.date
 
-                    item.categoryImage = "";
+                  item.categoryImage = "";
 
 
                   if (item.post_medium_image == null || item.post_medium_image == '') {
@@ -185,7 +185,7 @@ Page({
 
                   var strdate = item.date
 
-                    item.categoryImage = "";
+                  item.categoryImage = "";
 
 
                   if (item.post_medium_image == null || item.post_medium_image == '') {
@@ -275,25 +275,25 @@ Page({
   formSubmit: function (e) {
     var url = '../list/list';
     var key = '';
-    if(e.currentTarget.id == 'search-input'){
+    if (e.currentTarget.id == 'search-input') {
       key = e.detail.value;
-    }else{
+    } else {
       key = e.detail.value.input;
     }
-    if(key!=''){
-      url = url + '?search='+key;
+    if (key != '') {
+      url = url + '?search=' + key;
       wx.navigateTo({
         url: url,
       })
-    }else{
+    } else {
       wx.showModal({
         title: '提示',
         content: '请输入内容',
-        showCancel : false
+        showCancel: false
       })
     }
   },
-  redictAppDetail:function (e) {
+  redictAppDetail: function (e) {
     let {
       type,
       appid,
@@ -315,16 +315,14 @@ Page({
       })
     }
     if (type === 'miniapp') { // 其他小程序
-      if(jumptype=='embedded')
-      {
+      if (jumptype == 'embedded') {
         wx.openEmbeddedMiniProgram({
           appId: appid,
           path: path
         })
 
       }
-      else
-      {
+      else {
         wx.navigateToMiniProgram({
           appId: appid,
           path: path

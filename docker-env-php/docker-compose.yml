@@ -1,0 +1,87 @@
+version: '3'
+ 
+services:
+  php:
+    container_name: "php74" 
+# 可以直接用php镜像，但是出来可能缺东西，而且环境也不完整
+#  image: php:7.4 
+    build: ./php/extension
+# 这个目录放上我们刚才做好的定制化php的Dockerfile
+    ports: 
+      - "9000:9000" # fpm 端口
+#    restart: always
+    volumes:
+      - ./php/etc:/usr/local/etc # 映射配置文件
+      - ./php/log:/var/log/php # 日志文件映射 # 内部逻辑：这个必须加，因为nginx将请求转发给php后，实际上是php去执行了脚本解析
+      - /home/jialeipeng/www:/data/www # 项目目录，我所有的php项目都在src下面，只要去增加nginx配置就可以了，很方便。
+    stdin_open: true # stdin_open configures service containers to run with an allocated stdin.
+    tty: true # tty configure service container to run with a TTY.
+    links:
+      - "mysql" # 链接mysql服务
+    networks:
+      app_net:
+        ipv4_address: 10.10.10.3 # 分配ip
+    environment:
+        - TZ=Asia/Shanghai # 设置时区
+  nginx:
+    container_name: "nginx"
+    image: nginx:latest
+#    build: ./nginx # 也可以定制哟
+    #restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "555:555"
+    environment:
+      - TZ=Asia/Shanghai
+    depends_on:
+      - "php" # nginx必须依赖php的，所以要用depends_on
+    links:
+      - "php:php74" # 链接php
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d # 子配置文件
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf # 主配置文件
+      - ./nginx/log:/var/log/nginx/ # 日志
+    networks:
+      app_net:
+        ipv4_address: 10.10.10.2 # 分配ip
+  mysql:
+    container_name: "mylsql"
+    image: mysql:5.7
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./mysql/data:/var/lib/mysql # 数据目录
+      - ./mysql/conf:/etc/mysql/conf.d # 配置文件
+      - ./mysql/logs:/data/mysql/logs # 日志
+    #restart: always
+    environment:
+      - TZ=Asia/Shanghai
+      - MYSQL_ROOT_PASSWORD=123456 # 初始化密码
+    networks:
+      app_net:
+        ipv4_address: 10.10.10.1 # ip
+  redis:
+    container_name: redis
+    image: redis:5
+    #restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis/conf:/usr/local/etc/redis # 配置文件
+      - ./redis/data:/data # 数据目录
+    command:
+      redis-server /usr/local/etc/redis/redis.conf --requirepass 123456 # 启动redis
+    environment:
+      - TZ=Asia/Shanghai # 勘误：redis如果不在同一网段，会出现不能访问的问题
+    networks:
+      app_net:
+        ipv4_address: 10.10.10.4
+networks: # 定义网络
+  app_net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      config:
+        - subnet: 10.10.0.0/16

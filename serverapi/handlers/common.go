@@ -1,5 +1,11 @@
 package handlers
 
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
 type Response struct {
 	Code int    `json:"code"`
 	Msg  string `json:"msg"`
@@ -10,7 +16,7 @@ type ApiResponse struct {
 	Data interface{}
 }
 
-func Success(data interface{}) ApiResponse {
+func Success(c *gin.Context, data interface{}) {
 	apiResponse := ApiResponse{
 		Response{
 			Code: 1,
@@ -18,17 +24,16 @@ func Success(data interface{}) ApiResponse {
 		},
 		data,
 	}
-	return apiResponse
+	c.JSON(http.StatusOK, apiResponse)
 }
 
-func Fail(msg string) ApiResponse {
+func Fail(c *gin.Context, msg string) {
 	apiResponse := ApiResponse{
 		Response{
-			Code: 1,
-			Msg:  "Success",
+			Code: 0,
+			Msg:  msg,
 		},
 		make([]interface{}, 0),
 	}
-
-	return apiResponse
+	c.AbortWithStatusJSON(http.StatusOK, apiResponse)
 }
