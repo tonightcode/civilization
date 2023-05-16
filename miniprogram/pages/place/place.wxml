@@ -1,0 +1,47 @@
+<ui-sys tabbar>
+    <view>
+        <ui-navbar back="{{false}}" isSlot>
+            <text class="cicon-view-headline text-xxl" />
+            <text class="cicon-location-on-o text-orange text-sm">
+                <text style="color: rgb(106, 119, 139);font-family: Montserrat;">武汉</text>
+            </text>
+            <ui-avatar ui="radius" src="/images/gravatar.png" />
+        </ui-navbar>
+    </view>
+    <view>
+        <ui-title title="标题标题标题标题" />
+        <ui-title desc="副标题副标题副标题副标题副标题" />
+    </view>
+    <view>
+        <ui-swiper info="{{[{image:'https://www.watch-life.net/images/2021/01/minapper-bi.png',path: 'https://www.watch-life.net/images/2021/01/minapper-bi.png',type: 'apppage',url:'https://www.watch-life.net/images/2021/01/minapper-bi.png',title:'123'}]}}" dotStyle="long" dotCur="bg-orange" imgHeight="260rpx" imgName="image" swiperCss="radius" height="260rpx" />
+    </view>
+    <view class="p-3 flex-between">
+        <button class="ui-btn bg-orange">按钮</button>
+        <button class="ui-btn bg-orange-thin">按钮</button>
+        <button class="ui-btn bg-orange-gradient">按钮</button>
+        <button class="ui-btn bg-orange-light">按钮</button>
+    </view>
+    <view>
+        <ui-card ui="shadow m-3 radius" imgHeight="180rpx" img="/images/website.png" title="title" desc="desc" isTag>
+            <view slot="tag" class="ui-tag bg-mask-20 radius-lr">
+                <view>
+                    <text>{{item.like}}</text>
+                </view>
+            </view>
+        </ui-card>
+        <ui-card ui="shadow m-3 radius" imgHeight="180rpx" img="/images/website.png" title="title" desc="desc" isTag>
+            <view slot="tag" class="ui-tag bg-mask-20 radius-lr">
+                <view>
+                    <text>{{item.like}}</text>
+                </view>
+            </view>
+        </ui-card>
+        <ui-card ui="shadow m-3 radius" imgHeight="180rpx" img="/images/website.png" title="title" desc="desc" isTag>
+            <view slot="tag" class="ui-tag bg-mask-20 radius-lr">
+                <view>
+                    <text>{{item.like}}</text>
+                </view>
+            </view>
+        </ui-card>
+    </view>
+</ui-sys>

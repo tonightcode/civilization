@@ -10,7 +10,7 @@ let store = {}, sys_info = wx.getSystemInfoSync();
 let baseMethod = {
     //设置主题
     setTheme(data) {
-        store.setState({'sys_theme': data})
+        store.setState({ 'sys_theme': data })
         wx.setStorageSync('sys_theme', data);
         //跟随系统
         if (data === 'auto') {
@@ -21,38 +21,38 @@ let baseMethod = {
     },
     //设置主颜色
     setMain(data) {
-        store.setState({sys_main: data});
+        store.setState({ sys_main: data });
         wx.setStorageSync('sys_main', data);
     },
     //设置字号等级
     setText(data) {
-        store.setState({sys_text: data});
+        store.setState({ sys_text: data });
         wx.setStorageSync('sys_text', data);
     },
-    $showDialog({title , content , showCancel , cancelText, confirmText , success}) {
-        store.$p.map(item =>{
-            if(item.is.indexOf('components/ui-modal/ui-modal') > -1 ){
+    $showDialog({ title, content, showCancel, cancelText, confirmText, success }) {
+        store.$p.map(item => {
+            if (item.is.indexOf('components/ui-modal/ui-modal') > -1) {
                 //强制更新所有页面的successBack 为设定的success
                 item['successBack'] = success
             }
         })
         store.setState({
             '$Modal.show': true,
-            '$dialog.title' : title,
-            '$dialog.content' : content,
-            '$dialog.showCancel' : showCancel,
-            '$dialog.cancelText' : cancelText,
-            '$dialog.confirmText' : confirmText
+            '$dialog.title': title,
+            '$dialog.content': content,
+            '$dialog.showCancel': showCancel,
+            '$dialog.cancelText': cancelText,
+            '$dialog.confirmText': confirmText
         });
     },
-    setToast( data) {
-        let key ={}
-         Object.assign(key,data);
-         console.log(key)
+    setToast(data) {
+        let key = {}
+        Object.assign(key, data);
+        console.log(key)
         // state.toast = Object.assign(state.toast,data);
     },
-    $tips(res, duration = 1500, mask = false, icon=  '') {
-        if(_object(res)) {
+    $tips(res, duration = 1500, mask = false, icon = '') {
+        if (_object(res)) {
             store.setState({
                 '$toast.title': res.title || '',
                 '$toast.duration': res.duration || duration,
@@ -68,37 +68,37 @@ let baseMethod = {
             })
         }
     },
-    $success(_,title='成功',duration=1500){
+    $success(_, title = '成功', duration = 1500) {
         store.setState({
             '$toast.title': title,
             '$toast.duration': duration,
             '$toast.icon': '_icon-check'
         })
     },
-    $error(_,title='错误',duration=1500){
+    $error(_, title = '错误', duration = 1500) {
         store.setState({
-            '$toast.title' : title,
-            '$toast.duration' : duration,
-            '$toast.icon' : '_icon-warn',
+            '$toast.title': title,
+            '$toast.duration': duration,
+            '$toast.icon': '_icon-warn',
 
         })
     },
-    $loading(title = '加载中' , duration = 1500){
+    $loading(title = '加载中', duration = 1500) {
         store.setState({
-            '$toast.title' : title ,
-            '$toast.duration' : duration,
-            '$toast.icon' : '_icon-loading',
-            '$toast.isLoading':true
+            '$toast.title': title,
+            '$toast.duration': duration,
+            '$toast.icon': '_icon-loading',
+            '$toast.isLoading': true
         })
     },
-    $hideLoading(){
+    $hideLoading() {
         store.setState({
-            '$toast.title' : '',
-            '$toast.icon' : '',
-            '$toast.isLoading':false
+            '$toast.title': '',
+            '$toast.icon': '',
+            '$toast.isLoading': false
         })
     },
-    closeModal(){
+    closeModal() {
         store.setState({
             '$Modal.show': false,
         });
@@ -179,14 +179,14 @@ const _object = function (value) {
  * @param   tabBar              配置系统tabBar
  */
 export default class ColorUI {
-    constructor({config, data, state, methods}) {
+    constructor({ config, data, state, methods }) {
         //默认配置，防止没自定义配置时，出问题。
-        config.theme = config.theme||'auto'
-        config.main = config.main||'blue'
-        config.text = config.text||1
-        config.homePath = config.homePath||'/pages/index/index'
-        config.tabBar = config.tabBar||[]
-        config.shareTitle = config.shareTitle||''
+        config.theme = config.theme || 'auto'
+        config.main = config.main || 'blue'
+        config.text = config.text || 1
+        config.homePath = config.homePath || '/pages/place/place'
+        config.tabBar = config.tabBar || []
+        config.shareTitle = config.shareTitle || ''
         //处理数据
         this.config = config
         this.data = data
@@ -229,7 +229,7 @@ export default class ColorUI {
         store = CUStoreInit(this.config)
         if (this.config.theme === 'auto') {
             wx.onThemeChange((res) => {
-                store.setState({sys_theme: 'auto'})
+                store.setState({ sys_theme: 'auto' })
                 wx.setStorageSync('sys_theme', 'auto');
                 setStatusStyle(wx.getSystemInfoSync().theme === 'light' ? 'dark' : 'light')
             })

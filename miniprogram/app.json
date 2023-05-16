@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/place/place",
     "pages/detail/detail",
     "pages/my/my"
   ],
@@ -8,8 +8,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTextStyle": "black",
-    "pageOrientation": "portrait",
-    "navigationStyle": "custom"
+    "pageOrientation": "portrait"
   },
   "tabBar": {
     "color": "#959595",
@@ -18,7 +17,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/place/place",
         "text": " "
       },
       {
