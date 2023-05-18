@@ -43,6 +43,7 @@ Page({
       // console.log(res.data);
       let expand = res.data.expand;
       let swipe_nav = expand.swipe_nav;
+      console.warn(swipe_nav)
       let selected_nav = expand.selected_nav;
       let _d = res.data.downloadfileDomain
       let _b = res.data.businessDomain

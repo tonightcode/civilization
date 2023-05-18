@@ -21,7 +21,8 @@
     },
     "useCompilerPlugins": [
       "sass"
-    ]
+    ],
+    "condition": false
   },
   "condition": {},
   "editorSetting": {
