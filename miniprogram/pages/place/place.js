@@ -1,3 +1,5 @@
+var Api = require('../../utils/api.js');
+var wxRequest = require('../../utils/wxRequest.js')
 Page({
     data: {
         page: 1,
@@ -5,6 +7,8 @@ Page({
         swipe_nav: []
     },
     onLoad: function (options) {
+        var swipeNav = wxRequest.getRequest(Api.getSwipeNav());
+        console.warn(swipeNav)
         this.setData({
             swipe_nav: [
                 {
