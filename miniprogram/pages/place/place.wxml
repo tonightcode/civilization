@@ -13,10 +13,10 @@
         <ui-title desc="副标题副标题副标题副标题副标题" />
     </view>
     <view class=" ">
-        <ui-swiper info="{{swipe_nav}}" dotCur="bg-orange" bind:uiTap="swiperTap" imgName="image" dotStyle="long" swiperCss="radius" />
+        <ui-swiper info="{{swipe_nav}}" dotCur="bg-orange" bind:uiTap="swiperTap" imgName="cover" dotStyle="long" swiperCss="radius" />
     </view>
     <view class="m-3 text-left">
-        <ui-tab tab="{{[{name:'选项卡1',icon:'cicon-whatshot  text-yellow'},{name:'选项卡2',icon:'cicon-upstage-o text-yellow'},{name:'选项卡3',icon:'cicon-quill-o  text-yellow'},{name:'选项卡1',icon:'cicon-whatshot  text-yellow'}]}}" tpl="btn" mark="bg-orange" ui="radius p-1 sm" curColor="text-white" inline />
+        <ui-tab tab="{{[{name:'选项卡1',icon:'cicon-whatshot  text-yellow'},{name:'选项卡2',icon:'cicon-upstage-o text-yellow'},{name:'选项卡3',icon:'cicon-quill-o  text-yellow'}]}}" tpl="btn" mark="bg-orange" ui="radius p-1 sm" curColor="text-white" inline />
     </view>
     <view>
         <ui-card ui="shadow m-3 radius" imgHeight="180rpx" img="/images/website.png" title="title" desc="desc" isTag>

@@ -1,13 +1,25 @@
 .ui-swiper {
     position: relative;
+
     .ui-swiper-main {
         width: 100%;
         height: 100%;
     }
+
     .ui-swiper-main .image {
         width: 100%;
         height: 100%;
     }
+
+    .ui-swiper-item-title {
+        position: absolute;
+        bottom: 0%;
+        right: 0%;
+        z-index: 1;
+        color: black;
+        background-color: #ffffff;
+    }
+
     .ui-swiper-dot {
         position: absolute;
         width: 100%;
@@ -16,6 +28,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
         &.default .view {
             display: inline-flex;
             border-radius: 50rpx;
@@ -27,12 +40,14 @@
             position: relative;
             justify-content: center;
             align-items: center;
+
             &.cur {
                 width: 8px;
                 height: 8px;
                 opacity: 1;
                 border: 0px solid transparent;
             }
+
             &.cur::after {
                 content: '';
                 border-radius: 50rpx;
@@ -41,6 +56,7 @@
                 background-color: #fff;
             }
         }
+
         &.long .view {
             display: inline-block;
             border-radius: 100rpx;
@@ -49,26 +65,31 @@
             margin: 0 10rpx;
             opacity: 0.3;
             position: relative;
+
             &.cur {
                 width: 24rpx;
                 opacity: 1;
             }
-            &.cur::after {
-            }
+
+            &.cur::after {}
         }
+
         &.line {
             bottom: 20rpx;
+
             .view {
                 display: inline-block;
                 width: 30px;
                 height: 3px;
                 opacity: 0.3;
                 position: relative;
+
                 &.cur {
                     opacity: 1;
                 }
             }
         }
+
         &.tag {
             justify-content: flex-end;
             position: absolute;
@@ -76,6 +97,7 @@
             right: 20rpx;
         }
     }
+
     &.card {
         .swiper-item {
             width: 610rpx !important;
@@ -84,6 +106,7 @@
             padding: 20rpx 0rpx 60rpx;
             overflow: initial;
         }
+
         .swiper-item .ui-swiper-main {
             width: 100%;
             display: block;
@@ -93,11 +116,13 @@
             transition: all 0.2s ease-in 0s;
             position: relative;
             background-size: cover;
+
             .image {
                 height: 100%;
                 border-radius: inherit;
             }
         }
+
         .swiper-item .ui-swiper-main::before {
             content: '';
             display: block;
@@ -114,16 +139,19 @@
             border-radius: inherit;
             transform: scale(1, 1);
         }
+
         .swiper-item.cur .ui-swiper-main {
             transform: scale(1);
             transition: all 0.2s ease-in 0s;
         }
+
         .ui-swiper-dot.tag {
             position: absolute;
             bottom: 85rpx;
             right: 75rpx;
         }
     }
+
     &.hotelCard {
         .swiper-item {
             width: 650rpx !important;
@@ -132,6 +160,7 @@
             padding: 0rpx 0rpx 50rpx;
             overflow: initial;
         }
+
         .swiper-item .ui-swiper-main {
             width: 100%;
             display: block;
@@ -142,12 +171,14 @@
             transition: all 0.2s ease-in 0s;
             position: relative;
             background-size: cover;
+
             .image {
                 width: 100%;
                 height: 400rpx;
                 border-radius: 10rpx 10rpx 0 0;
             }
         }
+
         .swiper-item .ui-swiper-main::before {
             content: '';
             display: block;
@@ -164,15 +195,18 @@
             border-radius: inherit;
             transform: scale(1, 1);
         }
+
         .swiper-item.cur .ui-swiper-main {
             transform: scale(1);
             transition: all 0.2s ease-in 0s;
             opacity: 1;
         }
+
         .ui-swiper-dot {
             display: none;
         }
     }
+
     &.hotelDetail {
         .swiper-item {
             width: 690rpx !important;
@@ -181,6 +215,7 @@
             padding: 20rpx 0rpx;
             overflow: initial;
         }
+
         .swiper-item .ui-swiper-main {
             width: 100%;
             display: block;
@@ -189,10 +224,12 @@
             transition: all 0.2s ease-in 0s;
             position: relative;
             background-size: cover;
+
             .image {
                 height: 100%;
             }
         }
+
         .swiper-item.cur .ui-swiper-main {
             transform: scale(0.96);
             transition: all 0.2s ease-in 0s;
