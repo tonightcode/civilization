@@ -35,11 +35,14 @@ func (event Event) GetEvents(c *gin.Context) {
 
 // add or update
 func (event Event) EditEvent(c *gin.Context) {
-	var params eventParams
-	err := c.ShouldBind(&params)
-	if err != nil {
-		Fail(c, "参数错误")
+	title := c.Query("title")
+	content := c.Query("content")
+	happened_at := c.Query("happened_at")
+	param := map[string]string{
+		"title":       title,
+		"content":     content,
+		"happened_at": happened_at,
 	}
-	data := _l.EditEvent(params)
+	data := _l.EditEvent(param)
 	Success(c, data)
 }

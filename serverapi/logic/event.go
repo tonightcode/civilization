@@ -24,7 +24,7 @@ func (event Event) GetEvents() interface{} {
 	return eventEntitys
 }
 
-func (event Event) EditEvent(param eventParams) int {
+func (event Event) EditEvent(param map[string]string) int {
 	var eventEntity entity.Event
 	eventEntity.Title = param["title"]
 	eventEntity.Content = param["content"]
